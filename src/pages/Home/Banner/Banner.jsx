@@ -1,7 +1,37 @@
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
+import img1 from "../../../assets/home/banner/01.jpg";
+import img2 from "../../../assets/home/banner/02.jpg";
+import img3 from "../../../assets/home/banner/03.png";
+import img4 from "../../../assets/home/banner/04.jpg";
+import img5 from "../../../assets/home/banner/05.png";
+import img6 from "../../../assets/home/banner/06.png";
+import "./Banner.css";
+
 const Banner = () => {
-    return(
+  return (
+    <div>
+      <Carousel autoPlay={1500} infiniteLoop={true}>
         <div>
-             <p> This is Banner section</p>
+          <img src={img1} alt="" />
         </div>
-    )}
+        <div>
+          <img src={img2} alt="" />
+        </div>
+        <div>
+          <img src={img3} alt="" />
+        </div>
+        <div>
+          <img src={img4} alt="" />
+        </div>
+        <div>
+          <img src={img5} alt="" />
+        </div>
+        <div>
+          <img src={img6} alt="" />
+        </div>
+      </Carousel>
+    </div>
+  );
+};
 export default Banner;
