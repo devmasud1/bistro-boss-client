@@ -36,7 +36,7 @@ const Menu = () => {
       <MenuCategory
         items={filterOffered}
         introImg={introImg}
-        introTitle="DESSERTS"
+        introTitle="dessert"
         description={description}
         btnTitle="ORDER YOUR FAVORITE FOOD"
       />
@@ -45,7 +45,7 @@ const Menu = () => {
       <MenuCategory
         items={filterPizza}
         introImg={introImg}
-        introTitle="Pizza"
+        introTitle="pizza"
         description={description}
         btnTitle="ORDER YOUR FAVORITE FOOD"
       />
@@ -54,7 +54,7 @@ const Menu = () => {
       <MenuCategory
         items={filterSalad}
         introImg={introImg}
-        introTitle="Salad"
+        introTitle="salad"
         description={description}
         btnTitle="ORDER YOUR FAVORITE FOOD"
       />
@@ -63,7 +63,7 @@ const Menu = () => {
       <MenuCategory
         items={filterSoup}
         introImg={introImg}
-        introTitle="SOUPS"
+        introTitle="soups"
         description={description}
         btnTitle="ORDER YOUR FAVORITE FOOD"
       />
