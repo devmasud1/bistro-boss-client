@@ -20,6 +20,34 @@ const Navbar = () => {
       </li>
       <li className="hover:text-orange-600 transition duration-300 ease-in-out">
         <NavLink
+          to="/our-menu"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-orange-600 border-b-2 border-orange-600"
+              : ""
+          }
+        >
+          Our Menu
+        </NavLink>
+      </li>
+      <li className="hover:text-orange-600 transition duration-300 ease-in-out">
+        <NavLink
+          to="/our-shop"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-orange-600 border-b-2 border-orange-600"
+              : ""
+          }
+        >
+          Our Shop
+        </NavLink>
+      </li>
+      <li className="hover:text-orange-600 transition duration-300 ease-in-out">
+        <NavLink
           to="/contact"
           className={({ isActive, isPending }) =>
             isPending
@@ -45,36 +73,6 @@ const Navbar = () => {
           }
         >
           DASHBOARD
-        </NavLink>
-      </li>
-
-      <li className="hover:text-orange-600 transition duration-300 ease-in-out">
-        <NavLink
-          to="/our-menu"
-          className={({ isActive, isPending }) =>
-            isPending
-              ? "pending"
-              : isActive
-              ? "text-orange-600 border-b-2 border-orange-600"
-              : ""
-          }
-        >
-          Our Menu
-        </NavLink>
-      </li>
-
-      <li className="hover:text-orange-600 transition duration-300 ease-in-out">
-        <NavLink
-          to="/our-shop"
-          className={({ isActive, isPending }) =>
-            isPending
-              ? "pending"
-              : isActive
-              ? "text-orange-600 border-b-2 border-orange-600"
-              : ""
-          }
-        >
-          Our Shop
         </NavLink>
       </li>
     </>
