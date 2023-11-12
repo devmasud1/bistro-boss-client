@@ -17,7 +17,7 @@ const Testimonials = () => {
     fetch("/reviews.json")
       .then((res) => res.json())
       .then((data) => setReviews(data));
-  }, []); // Add an empty dependency array
+  }, []);
 
   return (
     <div>
