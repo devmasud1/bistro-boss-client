@@ -6,13 +6,13 @@ import Menu from "../pages/Menu/Menu";
 import OurShop from "../pages/OurShop/OurShop";
 import Contact from "../pages/Contact/Contact";
 import LogIn from "../pages/LogIn/LogIn";
-
+import SignUp from "./../pages/SignUp/SignUp";
 
 export const Router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement: <ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -33,7 +33,11 @@ export const Router = createBrowserRouter([
     ],
   },
   {
-    path: '/login',
-    element: <LogIn/>
-  }
+    path: "/login",
+    element: <LogIn />,
+  },
+  {
+    path: "/signup",
+    element: <SignUp />,
+  },
 ]);

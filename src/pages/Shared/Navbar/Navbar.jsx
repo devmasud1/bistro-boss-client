@@ -1,7 +1,19 @@
 import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
+import { useContext } from "react";
+import { AuthContext } from "../../../hooks/provide/AuthProvider";
+import toast, { Toaster } from "react-hot-toast";
 
 const Navbar = () => {
+  const { user, userSignOut } = useContext(AuthContext);
+
+  const handleSignOut = () => {
+    userSignOut()
+    .then(() => {
+      toast.success('log out success', {id: 'loading....'})
+    })
+  };
+
   const navItem = (
     <>
       <li className="hover:text-orange-600 transition duration-300 ease-in-out">
@@ -80,6 +92,7 @@ const Navbar = () => {
 
   return (
     <div className="">
+      <Toaster/>
       <div className="navbar fixed z-10 bg-black bg-opacity-50 text-white max-w-7xl mx-auto">
         <div className="navbar-start">
           <div className="dropdown lg:hidden">
@@ -117,9 +130,15 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="w-1/2 justify-end">
-          <Link to='/login'>
-            <button className="btn btn-primary">sign in</button>
-          </Link>
+          {user ? (
+            <button className="btn btn-secondary" onClick={handleSignOut}>
+              sign out
+            </button>
+          ) : (
+            <Link to="/login">
+              <button className="btn btn-primary">sign in</button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

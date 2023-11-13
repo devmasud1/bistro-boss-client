@@ -1,14 +1,18 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import loginImg from "../../assets/others/login.png";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../hooks/provide/AuthProvider";
+import toast, { Toaster } from "react-hot-toast";
 
 const LogIn = () => {
-    const [disabled, setDisabled] = useState(true);
-    const [captchaValue, setCaptchaValue] = useState("");
+  const [disabled, setDisabled] = useState(true);
+  const [captchaValue, setCaptchaValue] = useState("");
+  const { userLogIn } = useContext(AuthContext);
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -21,23 +25,33 @@ const LogIn = () => {
 
     const email = form.email.value;
     const password = form.password.value;
-    
-    console.log(email, password);
+
+    const loadingToast = toast.loading("Logging in...");
+
+    userLogIn(email, password)
+      .then(() => {
+        toast.success("Login successful", { id: loadingToast });
+        form.reset();
+      })
+      .catch((err) => {
+        toast.dismiss(loadingToast);
+        toast.error("something wrong!", err.message);
+        form.reset();
+      });
   };
 
   const handleCaptchaChange = (e) => {
     const user_captcha_value = e.target.value;
     setCaptchaValue(user_captcha_value);
-  
+
     // Enable the login button if the captcha is valid
     setDisabled(!validateCaptcha(user_captcha_value));
   };
-  
 
   return (
     <div>
-      <div className="hero min-h-screen bg-base-200">
-       
+      <Toaster />
+      <div className="hero min-h-screen">
         <div className="hero-content flex-col lg:flex-row">
           <div className="text-center lg:text-left">
             <p className="py-6">
@@ -59,7 +73,6 @@ const LogIn = () => {
                   placeholder="email"
                   className="input input-bordered normal-case"
                   required
-                  
                 />
               </div>
               <div className="form-control">
@@ -82,7 +95,7 @@ const LogIn = () => {
 
               <div className="form-control">
                 <label className="label">
-                  <LoadCanvasTemplate reloadText="refresh"/>
+                  <LoadCanvasTemplate reloadText="refresh" />
                 </label>
                 <input
                   type="text"
@@ -95,12 +108,16 @@ const LogIn = () => {
               </div>
               <div className="form-control mt-6">
                 <input
-                disabled={disabled}
+                  disabled={disabled}
                   className="btn btn-primary"
                   type="submit"
                   value="Login"
                 />
               </div>
+
+              <p>
+                New here? <Link to="/signup">Create a New Account</Link>{" "}
+              </p>
             </form>
           </div>
         </div>
