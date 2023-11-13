@@ -4,8 +4,9 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { useState } from "react";
 import UseMenu from "../../hooks/UseMenu";
-import FoodCard from "./../../components/SectionTitle/FoodCard/FoodCard";
+import FoodCard from "./../../components/FoodCard/FoodCard";
 import { useParams } from "react-router-dom";
+import PageTitle from "../../components/PageTitle/PageTitle";
 
 const OurShop = () => {
   const [menu] = UseMenu();
@@ -15,8 +16,6 @@ const OurShop = () => {
   const { category } = useParams();
   const initialIndex = tabItem.indexOf(category.toLowerCase());
   const [tabIndex, setTabIndex] = useState(initialIndex);
-  // const categoryName = category.toLowerCase();
-  // console.log(categoryName)
 
   const filteredItems = {
     salad: menu.filter((item) => item.category === "salad"),
@@ -28,6 +27,7 @@ const OurShop = () => {
 
   return (
     <div>
+      <PageTitle title="Bistro Boss | Shop"></PageTitle>
       <Cover
         img={shopCover}
         title="OUR SHOP"

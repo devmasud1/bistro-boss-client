@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet-async";
 import Category from "../Category/Category";
 import Contact from "../Contact/Contact";
 import Featured from "../Featured/Featured";
@@ -8,6 +7,7 @@ import Testimonials from "../Testimonials/Testimonials";
 import Banner from "./../Banner/Banner";
 import Intro from "../../Shared/Intro/Intro";
 import img from "../../../assets/home/chef-service.jpg";
+import PageTitle from "../../../components/PageTitle/PageTitle";
 
 const Home = () => {
   const description = (
@@ -20,10 +20,7 @@ const Home = () => {
   );
   return (
     <div>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Bistro Boss || Home</title>
-      </Helmet>
+     <PageTitle title="Bistro Boss | Home"></PageTitle>
       <Banner />
       <Category />
       <Intro img={img} title="Bistro Boss" description={description} />

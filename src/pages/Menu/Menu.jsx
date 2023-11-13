@@ -4,6 +4,7 @@ import introImg from "../../assets/home/chef-service.jpg";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import UseMenu from "../../hooks/UseMenu";
 import MenuCategory from "./Shared/MenuCategory";
+import PageTitle from "../../components/PageTitle/PageTitle";
 
 const Menu = () => {
   const [menu] = UseMenu();
@@ -22,6 +23,7 @@ const Menu = () => {
   );
   return (
     <div>
+      <PageTitle title="Bistro Boss | Menu"></PageTitle>
       <Cover
         img={coverImg}
         title="our menu"

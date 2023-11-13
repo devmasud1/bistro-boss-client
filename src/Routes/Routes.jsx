@@ -5,6 +5,7 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Menu from "../pages/Menu/Menu";
 import OurShop from "../pages/OurShop/OurShop";
 import Contact from "../pages/Contact/Contact";
+import LogIn from "../pages/LogIn/LogIn";
 
 
 export const Router = createBrowserRouter([
@@ -31,4 +32,8 @@ export const Router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '/login',
+    element: <LogIn/>
+  }
 ]);
