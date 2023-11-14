@@ -7,6 +7,7 @@ import OurShop from "../pages/OurShop/OurShop";
 import Contact from "../pages/Contact/Contact";
 import LogIn from "../pages/LogIn/LogIn";
 import SignUp from "./../pages/SignUp/SignUp";
+import PrivateRoutes from "./PrivateRoutes";
 
 export const Router = createBrowserRouter([
   {
@@ -24,7 +25,9 @@ export const Router = createBrowserRouter([
       },
       {
         path: "/our-shop/:category",
-        element: <OurShop />,
+        element: <PrivateRoutes>
+          <OurShop />
+        </PrivateRoutes>,
       },
       {
         path: "/contact",

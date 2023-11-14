@@ -93,7 +93,7 @@ const Navbar = () => {
   return (
     <div className="">
       <Toaster/>
-      <div className="navbar fixed z-10 bg-black bg-opacity-50 text-white max-w-7xl mx-auto">
+      <div className="navbar fixed z-10 bg-black bg-opacity-50 text-white max-w-7xl mx-auto px-5">
         <div className="navbar-start">
           <div className="dropdown lg:hidden">
             <label tabIndex={0} className="btn btn-ghost">
@@ -120,8 +120,8 @@ const Navbar = () => {
             </ul>
           </div>
           <div>
-            <h1 className="text-xl lg:text-3xl font-black">Bistro Boss</h1>
-            <h2 className="text-xl lg:text-2xl font-bold">Restaurant</h2>
+            <h1 className="text-xl lg:text-3xl font-semibold lg:font-bold">Bistro Boss</h1>
+            <h2 className="text-lg lg:text-2xl font-medium lg:font-semibold">Restaurant</h2>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex gap-20">
@@ -136,7 +136,7 @@ const Navbar = () => {
             </button>
           ) : (
             <Link to="/login">
-              <button className="btn btn-primary">sign in</button>
+              <button className="btn btn-neutral">sign in</button>
             </Link>
           )}
         </div>

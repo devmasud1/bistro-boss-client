@@ -5,14 +5,19 @@ import {
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../hooks/provide/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
+import PageTitle from "../../components/PageTitle/PageTitle";
 
 const LogIn = () => {
   const [disabled, setDisabled] = useState(true);
   const [captchaValue, setCaptchaValue] = useState("");
   const { userLogIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location?.state?.from?.pathname || "/";
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -32,6 +37,7 @@ const LogIn = () => {
       .then(() => {
         toast.success("Login successful", { id: loadingToast });
         form.reset();
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         toast.dismiss(loadingToast);
@@ -50,6 +56,7 @@ const LogIn = () => {
 
   return (
     <div>
+      <PageTitle title="Bistro Boss | log in"></PageTitle>
       <Toaster />
       <div className="hero min-h-screen">
         <div className="hero-content flex-col lg:flex-row">

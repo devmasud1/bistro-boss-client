@@ -1,11 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import signUpImg from "../../assets/others/login.png";
 import { useContext } from "react";
 import { AuthContext } from "../../hooks/provide/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
+import PageTitle from "../../components/PageTitle/PageTitle";
 
 const SignUp = () => {
   const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location?.state?.pathname || "/";
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -20,6 +25,7 @@ const SignUp = () => {
       .then(() => {
         toast.success("successfully created account", { id: loadingToast });
         form.reset();
+        navigate(from, { replace: true });
       })
       .catch(() => {
         toast.dismiss(loadingToast);
@@ -29,6 +35,7 @@ const SignUp = () => {
   };
   return (
     <div>
+      <PageTitle title="Bistro Boss | Sign up"></PageTitle>
       <Toaster />
       <div className="hero min-h-screen ">
         <div className="hero-content flex-col lg:flex-row">
