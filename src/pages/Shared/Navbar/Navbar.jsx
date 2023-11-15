@@ -4,9 +4,11 @@ import { useContext } from "react";
 import { AuthContext } from "../../../hooks/provide/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../../hooks/useCart";
 
 const Navbar = () => {
   const { user, userSignOut } = useContext(AuthContext);
+  const [,cart] = useCart();
 
   const handleSignOut = () => {
     userSignOut().then(() => {
@@ -91,7 +93,7 @@ const Navbar = () => {
         <NavLink to='dashboard/cart' className='flex items-center gap-1'>
         <FaShoppingCart />
 
-          <div className="badge">+0</div>
+          <div className="badge">{cart.length}</div>
         </NavLink>
       </li>
     </>

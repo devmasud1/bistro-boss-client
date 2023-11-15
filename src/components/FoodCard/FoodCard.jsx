@@ -3,13 +3,15 @@ import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import useCart from "../../hooks/useCart";
 
 const FoodCard = ({ cartItem }) => {
-  const { _id, name, image, price, recipe } = cartItem;
+  const { _id, name, image, price, recipe } = cartItem || {};
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useAuth();
   const axiosUrl = useAxios();
+  const [refetch] = useCart();
 
   const handleAddToCart = () => {
     if (user && user.email) {
@@ -25,10 +27,11 @@ const FoodCard = ({ cartItem }) => {
         .post("/carts", addCartItem)
         .then((res) => {
           if (res.data.insertedId) {
+            refetch();
             toast(`${name} has been added`, {
               position: "top-right",
               autoClose: 1000,
-              hideProgressBar: false,
+              hideProgressBar: true,
               closeOnClick: true,
               pauseOnHover: true,
               draggable: true,
@@ -38,16 +41,16 @@ const FoodCard = ({ cartItem }) => {
           }
         })
         .catch(() => {
-          toast.error('something wrong', {
+          toast.error("something wrong", {
             position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
+            autoClose: 1000,
+            hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
             theme: "light",
-            });
+          });
         });
     } else {
       Swal.fire({
@@ -57,14 +60,12 @@ const FoodCard = ({ cartItem }) => {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Log in"
+        confirmButtonText: "Log in",
       }).then((result) => {
         if (result.isConfirmed) {
           navigate("/login", { state: { from: location } });
-          
         }
       });
-     
     }
   };
   return (

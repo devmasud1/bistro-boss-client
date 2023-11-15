@@ -7,7 +7,8 @@ import OurShop from "../pages/OurShop/OurShop";
 import Contact from "../pages/Contact/Contact";
 import LogIn from "../pages/LogIn/LogIn";
 import SignUp from "./../pages/SignUp/SignUp";
-import PrivateRoutes from "./PrivateRoutes";
+import DashboardLayout from "../Layout/DashboardLayout";
+import Cart from "../pages/Dashboard/Cart/Cart";
 
 export const Router = createBrowserRouter([
   {
@@ -41,4 +42,15 @@ export const Router = createBrowserRouter([
     path: "/signup",
     element: <SignUp />,
   },
+  {
+    path:'/dashboard',
+    element: <DashboardLayout/>,
+    errorElement: <ErrorPage/>,
+    children: [
+      {
+        path: '/dashboard/cart',
+        element: <Cart/>
+      }
+    ]
+  }
 ]);
