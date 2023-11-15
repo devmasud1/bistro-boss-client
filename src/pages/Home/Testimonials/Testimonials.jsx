@@ -9,15 +9,15 @@ import { Navigation } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 
 import ReactStarsRating from "react-awesome-stars-rating";
+import useAxios from "../../../hooks/useAxios";
 
 const Testimonials = () => {
   const [reviews, setReviews] = useState([]);
+  const axiosUrl = useAxios();
 
   useEffect(() => {
-    fetch("/reviews.json")
-      .then((res) => res.json())
-      .then((data) => setReviews(data));
-  }, []);
+    axiosUrl.get("/reviews").then((data) => setReviews(data.data));
+  }, [axiosUrl]);
 
   return (
     <div>

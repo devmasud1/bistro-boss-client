@@ -3,15 +3,15 @@ import "./Navbar.css";
 import { useContext } from "react";
 import { AuthContext } from "../../../hooks/provide/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, userSignOut } = useContext(AuthContext);
 
   const handleSignOut = () => {
-    userSignOut()
-    .then(() => {
-      toast.success('log out success', {id: 'loading....'})
-    })
+    userSignOut().then(() => {
+      toast.success("log out success", { id: "loading...." });
+    });
   };
 
   const navItem = (
@@ -87,12 +87,19 @@ const Navbar = () => {
           DASHBOARD
         </NavLink>
       </li>
+      <li>
+        <NavLink to='dashboard/cart' className='flex items-center gap-1'>
+        <FaShoppingCart />
+
+          <div className="badge">+0</div>
+        </NavLink>
+      </li>
     </>
   );
 
   return (
     <div className="">
-      <Toaster/>
+      <Toaster />
       <div className="navbar fixed z-10 bg-black bg-opacity-50 text-white max-w-7xl mx-auto px-5">
         <div className="navbar-start">
           <div className="dropdown lg:hidden">
@@ -120,8 +127,12 @@ const Navbar = () => {
             </ul>
           </div>
           <div>
-            <h1 className="text-xl lg:text-3xl font-semibold lg:font-bold">Bistro Boss</h1>
-            <h2 className="text-lg lg:text-2xl font-medium lg:font-semibold">Restaurant</h2>
+            <h1 className="text-xl lg:text-3xl font-semibold lg:font-bold">
+              Bistro Boss
+            </h1>
+            <h2 className="text-lg lg:text-2xl font-medium lg:font-semibold">
+              Restaurant
+            </h2>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex gap-20">
