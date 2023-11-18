@@ -4,9 +4,12 @@ import { useContext } from "react";
 import { AuthContext } from "../../hooks/provide/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 import PageTitle from "../../components/PageTitle/PageTitle";
+import SocialLogIn from "../../components/SocialLogIn/SocialLogIn";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const SignUp = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const axiosPublicUrl = useAxiosPublic();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -21,14 +24,35 @@ const SignUp = () => {
 
     const loadingToast = "loading.....";
 
-    createUser(email, password, name)
+    createUser(email, password)
       .then(() => {
-        toast.success("successfully created account", { id: loadingToast });
-        form.reset();
-        navigate(from, { replace: true });
+        // const loggedUser = result.user;
+        // console.log(loggedUser);
+
+        updateUserProfile(name).then(() => {
+          const userInfo = {
+            name: name,
+            email: email,
+          };
+          axiosPublicUrl
+            .post("/users", userInfo)
+            .then((res) => {
+              if (res.data.insertedId) {
+                toast.success("successfully created account", {
+                  id: loadingToast,
+                });
+                form.reset();
+                navigate(from, { replace: true });
+              }
+            })
+            .catch(() => {
+              toast.dismiss(loadingToast);
+              toast.error("something wrong");
+              form.reset();
+            });
+        });
       })
       .catch(() => {
-        toast.dismiss(loadingToast);
         toast.error("something wrong");
         form.reset();
       });
@@ -39,7 +63,7 @@ const SignUp = () => {
       <Toaster />
       <div className="hero min-h-screen ">
         <div className="hero-content flex-col lg:flex-row">
-          <div className="text-center lg:text-left">
+          <div className="text-center hidden lg:block lg:text-left">
             <p className="py-6">
               <img src={signUpImg} alt="" />
             </p>
@@ -100,6 +124,8 @@ const SignUp = () => {
               </div>
               <p>
                 Already registered? <Link to="/login"> Go to log in</Link>{" "}
+                <div className="divider"></div>
+                <SocialLogIn />
               </p>
             </form>
           </div>

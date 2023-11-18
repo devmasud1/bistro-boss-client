@@ -9,6 +9,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../hooks/provide/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 import PageTitle from "../../components/PageTitle/PageTitle";
+import SocialLogIn from "../../components/SocialLogIn/SocialLogIn";
 
 const LogIn = () => {
   const [disabled, setDisabled] = useState(true);
@@ -31,7 +32,7 @@ const LogIn = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    const loadingToast = toast.loading("Logging in...");
+    const loadingToast = toast.loading("Logging...");
 
     userLogIn(email, password)
       .then(() => {
@@ -60,7 +61,7 @@ const LogIn = () => {
       <Toaster />
       <div className="hero min-h-screen">
         <div className="hero-content flex-col lg:flex-row">
-          <div className="text-center lg:text-left">
+          <div className="text-center hidden lg:block lg:text-left">
             <p className="py-6">
               <img src={loginImg} alt="" />
             </p>
@@ -125,6 +126,8 @@ const LogIn = () => {
               <p>
                 New here? <Link to="/signup">Create a New Account</Link>{" "}
               </p>
+              <div className="divider"></div>
+              <SocialLogIn />
             </form>
           </div>
         </div>

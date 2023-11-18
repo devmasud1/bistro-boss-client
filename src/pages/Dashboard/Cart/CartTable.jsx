@@ -2,6 +2,7 @@ import { MdDeleteForever } from "react-icons/md";
 import useAxios from "../../../hooks/useAxios";
 import { toast } from "react-toastify";
 import useCart from "../../../hooks/useCart";
+import Swal from "sweetalert2";
 
 const CartTable = ({ item, index }) => {
   const { menuId, name, image, price } = item || {};
@@ -9,35 +10,47 @@ const CartTable = ({ item, index }) => {
   const [refetch] = useCart();
 
   const handleDeleteUserItem = () => {
-    axiosUrl
-      .delete(`/cart/${menuId}`)
-      .then((res) => {
-        if (res.data.deletedCount > 0) {
-          refetch();
-          toast.success("item delete success!", {
-            position: "top-right",
-            autoClose: 1000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosUrl
+          .delete(`/cart/${menuId}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              refetch();
+              toast.success("item delete success!", {
+                position: "top-right",
+                autoClose: 1000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+            }
+          })
+          .catch(() => {
+            toast.error("something wrong", {
+              position: "top-right",
+              autoClose: 1000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
           });
-        }
-      })
-      .catch(() => {
-        toast.error("something wrong", {
-          position: "top-right",
-          autoClose: 1000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-      });
+      }
+    });
   };
   return (
     <tr>
