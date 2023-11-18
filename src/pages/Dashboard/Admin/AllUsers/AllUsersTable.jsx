@@ -1,25 +1,25 @@
 import { FaTrashAlt } from "react-icons/fa";
-import useAxios from "../../../../hooks/useAxios";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { FaUsers } from "react-icons/fa6";
 
 const AllUsersTable = ({ user, idx, refetch }) => {
   const { name, email } = user || {};
-  const axiosUrl = useAxios();
+  const axiosSecureUrl = useAxiosSecure();
 
   const handleDeleteUser = () => {
     Swal.fire({
       title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      text: `Remove ${user.name} from user collection!`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosUrl
+        axiosSecureUrl
           .delete(`/users/${user._id}`)
           .then((res) => {
             if (res.data.deletedCount > 0) {
@@ -62,7 +62,7 @@ const AllUsersTable = ({ user, idx, refetch }) => {
       confirmButtonText: "Yes, do it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosUrl
+        axiosSecureUrl
           .patch(`/users/${user._id}`)
           .then((res) => {
             if (res.data.modifiedCount > 0) {

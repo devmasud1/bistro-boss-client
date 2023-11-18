@@ -1,20 +1,57 @@
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
 
 const DashboardLayout = () => {
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
 
   const adminDashboardMenu = (
     <>
       <li>
-        <NavLink to="/dashboard/admin-home">  Admin Home </NavLink>
+        <NavLink
+          to="/dashboard/admin-home"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-white  border-b-2 border-orange-600"
+              : ""
+          }
+        >
+          {" "}
+          Admin Home{" "}
+        </NavLink>
       </li>
 
       <li>
-        <NavLink to="/dashboard/add-items"> add items </NavLink>
+        <NavLink
+          to="/dashboard/add-items"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-white  border-b-2 border-orange-600"
+              : ""
+          }
+        >
+          {" "}
+          add items{" "}
+        </NavLink>
       </li>
 
       <li>
-        <NavLink to="/dashboard/manage-items"> manage items  </NavLink>
+        <NavLink
+          to="/dashboard/manage-items"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-white  border-b-2 border-orange-600"
+              : ""
+          }
+        >
+          {" "}
+          manage items{" "}
+        </NavLink>
       </li>
 
       <li>
@@ -28,38 +65,76 @@ const DashboardLayout = () => {
               : ""
           }
         >
-        Manage bookings
+          Manage bookings
         </NavLink>
       </li>
 
       <li>
-        <NavLink to="/dashboard/all-users"
-        className={({ isActive, isPending }) =>
-        isPending
-          ? "pending"
-          : isActive
-          ? "text-white  border-b-2 border-orange-600"
-          : ""
-      }
-        > all users</NavLink>
+        <NavLink
+          to="/dashboard/all-users"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-white  border-b-2 border-orange-600"
+              : ""
+          }
+        >
+          {" "}
+          all users
+        </NavLink>
       </li>
-
-      
     </>
   );
 
   const userDashboardMenu = (
     <>
       <li>
-        <NavLink to="/dashboard/userHome"> User Home </NavLink>
+        <NavLink
+          to="/dashboard/userHome"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-white  border-b-2 border-orange-600"
+              : ""
+          }
+        >
+          {" "}
+          User Home{" "}
+        </NavLink>
       </li>
 
       <li>
-        <NavLink to="/dashboard/reservation"> Reservation </NavLink>
+        <NavLink
+          to="/dashboard/reservation"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-white  border-b-2 border-orange-600"
+              : ""
+          }
+        >
+          {" "}
+          Reservation{" "}
+        </NavLink>
       </li>
 
       <li>
-        <NavLink to="/dashboard/payment"> payment history </NavLink>
+        <NavLink
+          to="/dashboard/payment"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-white  border-b-2 border-orange-600"
+              : ""
+          }
+        >
+          {" "}
+          payment history{" "}
+        </NavLink>
       </li>
 
       <li>
@@ -78,30 +153,102 @@ const DashboardLayout = () => {
       </li>
 
       <li>
-        <NavLink to="/dashboard/addReview"> add review </NavLink>
+        <NavLink
+          to="/dashboard/addReview"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-white  border-b-2 border-orange-600"
+              : ""
+          }
+        >
+          {" "}
+          add review{" "}
+        </NavLink>
       </li>
 
       <li>
-        <NavLink to="/dashboard/myBooking"> my booking </NavLink>
+        <NavLink
+          to="/dashboard/myBooking"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-white  border-b-2 border-orange-600"
+              : ""
+          }
+        >
+          {" "}
+          my booking{" "}
+        </NavLink>
       </li>
     </>
   );
   const userHomeMenu = (
     <>
       <li>
-        <NavLink to="/"> Home </NavLink>
+        <NavLink
+          to="/"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-white  border-b-2 border-orange-600"
+              : ""
+          }
+        >
+          {" "}
+          Home{" "}
+        </NavLink>
       </li>
 
       <li>
-        <NavLink to="dashboard/menu"> Menu </NavLink>
+        <NavLink
+          to="dashboard/menu"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-white  border-b-2 border-orange-600"
+              : ""
+          }
+        >
+          {" "}
+          Menu{" "}
+        </NavLink>
       </li>
 
       <li>
-        <NavLink to="dashboard/shop"> Shop </NavLink>
+        <NavLink
+          to="dashboard/shop"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-white  border-b-2 border-orange-600"
+              : ""
+          }
+        >
+          {" "}
+          Shop{" "}
+        </NavLink>
       </li>
 
       <li>
-        <NavLink to="dashboard/contact"> Contact</NavLink>
+        <NavLink
+          to="dashboard/contact"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-white  border-b-2 border-orange-600"
+              : ""
+          }
+        >
+          {" "}
+          Contact
+        </NavLink>
       </li>
     </>
   );
@@ -109,11 +256,7 @@ const DashboardLayout = () => {
     <div className="flex">
       <div className="w-60 min-h-screen bg-[#D1A054]">
         <ul className="menu p-4 font-medium uppercase space-y-3">
-
-          {
-            isAdmin ? adminDashboardMenu :  userDashboardMenu
-          }
-         
+          {isAdmin ? adminDashboardMenu : userDashboardMenu}
 
           <div className="divider"> </div>
           {userHomeMenu}

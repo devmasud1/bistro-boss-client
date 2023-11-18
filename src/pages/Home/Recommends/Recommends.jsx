@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import FoodCard from "../../../components/FoodCard/FoodCard";
-import useAxios from "../../../hooks/useAxios";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Recommends = () => {
   const [recommends, setRecommends] = useState([]);
-  const axiosUrl = useAxios();
+  const axiosSecureUrl = useAxiosSecure();
 
   useEffect(() => {
-    axiosUrl
+    axiosSecureUrl
       .get("/menu")
       .then((res) =>
         setRecommends(res.data.filter((item) => item.category === "salad"))
       );
-  }, [axiosUrl]);
+  }, [axiosSecureUrl]);
 
   return (
     <div className="my-20">

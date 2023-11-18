@@ -7,6 +7,7 @@ import PageTitle from "../../components/PageTitle/PageTitle";
 import SocialLogIn from "../../components/SocialLogIn/SocialLogIn";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
+
 const SignUp = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const axiosPublicUrl = useAxiosPublic();

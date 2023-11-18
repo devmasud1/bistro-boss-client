@@ -1,7 +1,9 @@
+
+
 const AdminHome = () => {
     return(
         <div>
-             <p> This is AdminHome section</p>
+               <h1 className="lg:text-3xl font-medium">Hi, Welcome Back!</h1>
         </div>
     )}
 export default AdminHome;

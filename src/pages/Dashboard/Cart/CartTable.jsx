@@ -1,12 +1,14 @@
 import { MdDeleteForever } from "react-icons/md";
-import useAxios from "../../../hooks/useAxios";
+
 import { toast } from "react-toastify";
 import useCart from "../../../hooks/useCart";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+
 
 const CartTable = ({ item, index }) => {
   const { menuId, name, image, price } = item || {};
-  const axiosUrl = useAxios();
+  const axiosSecureUrl = useAxiosSecure();
   const [refetch] = useCart();
 
   const handleDeleteUserItem = () => {
@@ -20,7 +22,7 @@ const CartTable = ({ item, index }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosUrl
+        axiosSecureUrl
           .delete(`/cart/${menuId}`)
           .then((res) => {
             if (res.data.deletedCount > 0) {

@@ -1,15 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
-import useAxios from "../../../../hooks/useAxios";
+
 import AllUsersTable from "./AllUsersTable";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const AllUsers = () => {
-  const axiosUrl = useAxios();
+  const axiosSecureUrl = useAxiosSecure();
 
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await axiosUrl.get("/users");
+      const res = await axiosSecureUrl.get("/users");
       return res.data;
     },
   });
