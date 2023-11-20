@@ -44,7 +44,7 @@ const ManageItem = () => {
   return (
     <div>
       <SectionTitle subHeading="Hurry up!" mainHeading="MANAGE ALL items" />
-      <h1>ghf{menu.length}</h1>
+      
       <div>
         <div className="overflow-x-auto">
           <table className="table w-full">

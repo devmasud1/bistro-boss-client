@@ -16,6 +16,7 @@ import AddItem from "../pages/Dashboard/Admin/AddItem/AddItem";
 import ManageItem from "../pages/Dashboard/Admin/ManageItem/ManageItem";
 import ManageBooking from "../pages/Dashboard/Admin/ManageBooking/ManageBooking";
 import AdminRoutes from "./AdminRoutes";
+import UpdateItem from "../pages/Dashboard/Admin/ManageItem/UpdateItem";
 
 export const Router = createBrowserRouter([
   {
@@ -87,6 +88,15 @@ export const Router = createBrowserRouter([
             <ManageItem />
           </AdminRoutes>
         ),
+      },
+      {
+        path: "updateItem/:id",
+        element: (
+          <AdminRoutes>
+            <UpdateItem />
+          </AdminRoutes>
+        ),
+        loader: ({params}) => fetch(`http://localhost:5000/api/v1/menu/${params.id}`)
       },
       {
         path: "manage-booking",
