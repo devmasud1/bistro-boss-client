@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useCart from "../../../hooks/useCart";
 import CartTable from "./CartTable";
@@ -18,7 +19,12 @@ const Cart = () => {
           <h2 className="text-xl font-semibold">Total orders: {cart.length}</h2>
           <h2 className="text-xl font-semibold">Total price: {totalPrice}</h2>
 
-          <button className="btn btn-outline"> pay</button>
+         {cart.length ?
+         <Link to='/dashboard/payment'>
+          <button className="btn btn-outline btn-sm"> pay</button> </Link>
+          :
+         <button disabled className="btn btn-outline"> pay</button>
+         }
         </div>
 
         <div>

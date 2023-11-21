@@ -123,7 +123,7 @@ const DashboardLayout = () => {
 
       <li>
         <NavLink
-          to="/dashboard/payment"
+          to="/dashboard/payment-history"
           className={({ isActive, isPending }) =>
             isPending
               ? "pending"
